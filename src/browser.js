@@ -57,9 +57,10 @@ class Browser {
     return new Promise((resolve) => {
       try {
         if (this.browser == browsers.chrome) {
-          chrome.runtime.getBackgroundPage(function(backgroundPage) {
-            return resolve(script === backgroundPage);
-          });
+          return resolve(true)
+          // chrome.runtime.getBackgroundPage(function(backgroundPage) {
+          //   return resolve(script === backgroundPage);
+          // });
         } else if (this.browser == browsers.firefox) {
           browser.runtime.getBackgroundPage().then(function(backgroundPage) {
             return resolve(script === backgroundPage);
