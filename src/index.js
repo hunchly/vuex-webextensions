@@ -18,11 +18,6 @@ var defaultOptions = {
 };
 
 export default function(opt) {
-  if (typeof window === 'undefined') {
-    // This allows authors to unit test more easily
-    return () => {}; // eslint-disable-line no-empty-function
-  }
-
   // Merge default options with passed settings
   const options = {
     ...defaultOptions,
@@ -47,8 +42,14 @@ export default function(opt) {
       }
     });
 
+    let ww = 'undefined';
+
+    if (typeof window !== 'undefined') {
+      ww = window;
+    }
+
     // Get type of script and initialize connection
-    browser.isBackgroundScript(window).then(function(isBackground) {
+    browser.isBackgroundScript(ww).then(function(isBackground) {
       if (isBackground) {
         return new BackgroundScript(str, browser, options);
       }
