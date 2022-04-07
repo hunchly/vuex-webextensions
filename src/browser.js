@@ -57,7 +57,7 @@ class Browser {
     return new Promise((resolve) => {
       try {
         if (this.browser == browsers.chrome) {
-          return resolve(true);
+          return resolve(script === 'undefined');
         } else if (this.browser == browsers.firefox) {
           browser.runtime.getBackgroundPage().then(function(backgroundPage) {
             return resolve(script === backgroundPage);
