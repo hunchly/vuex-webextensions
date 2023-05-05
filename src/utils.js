@@ -10,6 +10,9 @@ function filterObject(source, keys) {
     const value = source[obj];
 
     if (typeof value !== 'undefined' && value) {
+      if (typeof value !== 'Array') {
+        console.log(value);
+      }
       newObject[obj] = value;
     }
   });
